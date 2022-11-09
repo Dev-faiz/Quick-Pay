@@ -2,7 +2,7 @@ package com.quickPay.service;
 
 public interface BenificiaryService {
 
-<<<<<<< HEAD
+//<<<<<<< HEAD
 }
 /* 
  
@@ -20,7 +20,7 @@ public interface BenificiaryService {
   
  */
  
-=======
+//=======
 	/* 
 	 
 	 addBenificiary(BenificiaryDetails bd ) return type BenificiaryDetails and throws BankAccountException 
@@ -32,7 +32,7 @@ public interface BenificiaryService {
 	 viewAllBenificiary(Customer customer)  return type List<Benificiary> and throws BankAccountException 
 	 
 	*/
-}
 
 
->>>>>>> branch 'main' of https://github.com/Dev-faiz/assorted-bead-1357.git
+
+//>>>>>>> branch 'main' of https://github.com/Dev-faiz/assorted-bead-1357.git
