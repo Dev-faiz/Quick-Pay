@@ -7,6 +7,8 @@ public class ErrorHandle {
 	private LocalDateTime ldt ; 
 	private String message ; 
 	private String description ;
+	
+	
 	public LocalDateTime getLdt() {
 		return ldt;
 	}
@@ -25,6 +27,8 @@ public class ErrorHandle {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
+	
 	public ErrorHandle(LocalDateTime ldt, String message, String description) {
 		super();
 		this.ldt = ldt;
