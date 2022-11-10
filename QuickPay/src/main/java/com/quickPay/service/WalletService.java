@@ -1,11 +1,20 @@
 package com.quickPay.service;
 
+import java.math.BigDecimal;
+
+import com.quickPay.model.Customer;
+
 public interface WalletService {
+	
+	
+	public Customer createAccount( String name , String mobileNumber , BigDecimal amount ) ; 
 
 }
 /*
 
 	createAccount(String name , String mobileNumber , BigDecimal amount) return Customer and throws CustomerException
+	
+	
 	
 	showBalance(String mobile) return Customer and throws CustomerException 
 	

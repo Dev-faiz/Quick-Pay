@@ -4,7 +4,7 @@ public interface BenificiaryService {
 
 
 }
-/* 
+/*
  
   addBenficiary(Beneficiary benificaryObj) returns Beneficiary object and throws BeneficiaryException 
   
@@ -13,9 +13,8 @@ public interface BenificiaryService {
   viewBenficiary(String mobNumber) returns Beneficiary object and throws BeneficiaryException 
   
   viewAllBenficiary(Customer customer) returns List<Beneficiary> object and throws BeneficiaryException && CustomerException
+ 
+    
+ */  
   
-  
-   
-   
-  
- */
+ 
