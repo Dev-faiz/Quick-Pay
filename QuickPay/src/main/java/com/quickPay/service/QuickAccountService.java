@@ -1,20 +1,13 @@
 package com.quickPay.service;
 
+import com.quickPay.exception.BankAccountNotFound;
+import com.quickPay.model.BankAccount;
 
 public interface QuickAccountService {
 
-	// Validation 
-	// 
+	public String addAccount(BankAccount bankAccount,Integer walletId);
 	
+	public BankAccount getAccountByAccountNumber(Integer accountNumber) throws BankAccountNotFound;
+
+	public String removeAccount(Integer accountNumber,String key)throws BankAccountNotFound;
 }
-/* 
- 
- addBankAccount(BankAccount bankAccount ) return type wallet and throws BankAccountException , WalletException 
- 
- removeBankAccount(BankAccount bankAccount ) return type wallet and throws BankAccountException , WalletException 
- 
- viewAccount(Wallet wallet)  return type will be BankAccount and throws BankAccountException , WalletException 
- 
- viewAllAccount(Wallet wallet)  return type will be BankAccount and throws BankAccountException , WalletException 
- 
-*/
