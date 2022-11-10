@@ -8,6 +8,9 @@ public class ErrorHandle {
 	private String message ; 
 	private String description ;
 	
+	public ErrorHandle() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public LocalDateTime getLdt() {
 		return ldt;

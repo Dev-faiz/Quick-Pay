@@ -1,6 +1,18 @@
 package com.quickPay.service;
 
-public interface BenificiaryService {
+
+import com.quickPay.exception.BeneficiaryException;
+import com.quickPay.model.Beneficiary;
+
+public interface BeneficiaryService {
+
+	public Beneficiary addBenificiary(Beneficiary bd )  throws BeneficiaryException;
+
+	public Beneficiary deleteBenificiary(Beneficiary bd )throws BeneficiaryException;
+
+	public Beneficiary viewBenificiary(String mobno)throws BeneficiaryException;
+
+	//public List<BeneficiaryDetails> viewAllBenificiary(Customer customer) throws BankAccountException;
 
 
 }
