@@ -7,14 +7,15 @@ import com.quickPay.model.Customer;
 public interface WalletService {
 	
 	
+	
 	public Customer createAccount( String name , String mobileNumber , BigDecimal amount ) ; 
+	
+	public Customer showBalance(String mobile )  ;
 
 }
 /*
 
 	createAccount(String name , String mobileNumber , BigDecimal amount) return Customer and throws CustomerException
-	
-	
 	
 	showBalance(String mobile) return Customer and throws CustomerException 
 	
