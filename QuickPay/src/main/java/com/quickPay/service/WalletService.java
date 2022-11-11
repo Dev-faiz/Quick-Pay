@@ -1,32 +1,32 @@
 package com.quickPay.service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
+import com.quickPay.exception.BankException;
+import com.quickPay.exception.CustomerException;
+import com.quickPay.exception.LoginException;
 import com.quickPay.model.Customer;
+import com.quickPay.model.Transaction;
+import com.quickPay.model.Wallet;
 
 public interface WalletService {
 	
 	
-	public Customer createAccount( String name , String mobileNumber , BigDecimal amount ) ; 
+//	public Wallet save(Wallet w);
+	
+	public Customer createAccount( String name , String mobileNumber , Integer amount ) throws BankException ; 
+	
+	public Integer showBalance(String key ) throws CustomerException , LoginException ;
+	
+	public Transaction fundTransfer (String sourceMobileNo, String targetMobileNumber , Integer amount ) throws CustomerException ;
+	
+	public  List<Customer> getList() throws CustomerException ; 
+	
+	public  Customer updateAccount(Customer customer) throws CustomerException  ; 
+	
+	public Transaction addMoney(Wallet wallet , Integer money , String key  ) throws LoginException , BankException  ; 
+	
+	
 
 }
-/*
-
-	createAccount(String name , String mobileNumber , BigDecimal amount) return Customer and throws CustomerException
-	
-	
-	
-	showBalance(String mobile) return Customer and throws CustomerException 
-	
-	fundTransfer (String sourceMobileNo, String targetMobileNumber , BigDecimal amount ) return Transaction and throws TransactionObject 
-	
-	getList() returns List<Customer> and throws CustomerException
-	
-	updateAccount(Customer customer) return Customer and throws CustomerException
-	
-	addMoney(Wallet wallet , Double money ) return  Customer and throws CustomerException and WalletException 
-	
-	
-	
-  */
- 

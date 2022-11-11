@@ -5,7 +5,10 @@ package com.quickPay.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,6 +38,7 @@ public class BankAccount {
 	private Double balanace ; 
 	
 	@ManyToOne
+	@JsonIgnore
 	private Wallet wallet ; 
 	
 }

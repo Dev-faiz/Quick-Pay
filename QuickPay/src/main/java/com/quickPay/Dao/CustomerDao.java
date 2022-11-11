@@ -7,4 +7,6 @@ import com.quickPay.model.Wallet;
 
 public interface CustomerDao  extends JpaRepository<Customer, Integer> {
 
+	public Customer	findByMobileNumber(String mobile);
+	
 }
