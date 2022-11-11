@@ -22,6 +22,8 @@ public class BillPayment {
 	
 	@Id
 	private Integer billId ; 
+	
+	
 	private String billType ; 
 	private Integer amount ;
 	private LocalDate paymentDate ; 

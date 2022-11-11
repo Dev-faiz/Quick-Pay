@@ -2,24 +2,26 @@ package com.quickPay.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.quickPay.Dao.CustomerDao;
+import com.quickPay.Dao.WalletDao;
 import com.quickPay.exception.BankAccountNotFound;
 import com.quickPay.model.BankAccount;
-import com.quickPay.model.Wallet;
 import com.quickPay.service.QuickAccountService;
 
 public class QuickAccountServiceImpl implements QuickAccountService {
 
 	@Autowired
-	private Wallet wallet;
+	private WalletDao wallet;
 	
-	
-	
+	@Autowired
+	private CustomerDao cd ; 
 	
 	
 	
 	@Override
 	public String addAccount(BankAccount bankAccount, Integer walletId) {
 	
+		
 		return null;
 	}
 	
