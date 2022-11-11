@@ -28,6 +28,9 @@ public class WalletController {
 	@Autowired
 	public WalletService ws ; 
 
+
+	
+	
 	@GetMapping("checkWallet")
 	public String checkWallet() {
 		
@@ -40,9 +43,6 @@ public class WalletController {
 		return new ResponseEntity<Customer>(new Customer(14 , "Faiz" , "456" , "123" , null) , HttpStatus.ACCEPTED) ;
 	}
 	
-	
-	
-	
 	@GetMapping("customer/{id}")
 	public ResponseEntity<BigDecimal> getBalancebyMobileNo( @PathVariable("id") String mobile ){
 		
@@ -52,7 +52,5 @@ public class WalletController {
 		return new ResponseEntity<BigDecimal>(c.getWallet().getBalance() , HttpStatus.ACCEPTED);
 		
 	}
-	
-	
 	
 }
