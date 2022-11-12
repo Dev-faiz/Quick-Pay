@@ -1,6 +1,6 @@
 package com.quickPay.controller;
 
-import java.math.BigDecimal;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +22,15 @@ public class WalletControl {
 	@Autowired
 	private WalletService wService ; 
 	
-
+	@PostMapping("wallet")
+	public Wallet getBalance(@RequestBody Wallet w ) throws CustomerException , LoginException{
+		
+		
+		
+		return w ;
+		
+	}
+	
 	
 	@GetMapping("wallet/{mobile}")
 	public ResponseEntity<Integer> getBalance(@PathVariable("mobile") String mobile ) throws CustomerException , LoginException{
@@ -32,6 +40,7 @@ public class WalletControl {
 		return new ResponseEntity<Integer>( balance , HttpStatus.OK);
 		
 	}
+	
 	
 	
 }
