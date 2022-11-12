@@ -72,4 +72,14 @@ public class GlobalExceptionHandler {
 		return new ResponseEntity<ErrorHandle>(eh, HttpStatus.BAD_REQUEST);
 
 	}
+	
+	@ExceptionHandler(TransactionException.class)
+	public ResponseEntity<ErrorHandle> transactionHandler(TransactionException te, WebRequest wr) {
+
+		ErrorHandle eh = new ErrorHandle(LocalDateTime.now(), te.getMessage(), wr.getDescription(false));
+
+		return new ResponseEntity<ErrorHandle>(eh, HttpStatus.BAD_REQUEST);
+
+	}
+	
 }

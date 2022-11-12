@@ -9,5 +9,5 @@ import com.quickPay.model.User;
 @Repository
 public interface UserDao extends JpaRepository<User, Integer> {
 
-	public  User findByUuid(String uuid);
+	public User findByUuid(String uuid);
 }
