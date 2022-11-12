@@ -24,7 +24,7 @@ public class BeneficiaryController {
 
 	@Autowired
 	private BeneficiaryService bService;
-
+//DD
 	@PostMapping("/beneficiaries")
 	public ResponseEntity<Beneficiary> addBenificiaryHandler(@Valid @RequestBody Beneficiary bd)
 			throws BeneficiaryException {

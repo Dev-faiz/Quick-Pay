@@ -25,8 +25,8 @@ public class WalletControl {
 	@PostMapping("wallet")
 	public Wallet getBalance(@RequestBody Wallet w ) throws CustomerException , LoginException{
 		
-		
-		
+		//add
+		   
 		return w ;
 		
 	}
