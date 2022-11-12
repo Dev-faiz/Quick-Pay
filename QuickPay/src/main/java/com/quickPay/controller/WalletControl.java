@@ -60,7 +60,7 @@ public class WalletControl {
 	}
 	
 	@PostMapping("wallet")
-	public ResponseEntity<Customer> getBalance(@RequestBody AddDto d) throws CustomerException , LoginException, BankException{
+	public ResponseEntity<Customer> createAcoountHandler(@RequestBody AddDto d) throws CustomerException , LoginException, BankException{
 		
 		Customer c =  wService.createAccount(d.getName(), d.getMobile(), d.getAmount());
 		
