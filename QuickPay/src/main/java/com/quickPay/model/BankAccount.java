@@ -38,6 +38,7 @@ public class BankAccount {
 //	@NotNull
 	private Double balanace ; 
 	
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL , mappedBy = "bankAccount")
 	private Wallet wallet ; 
 	
