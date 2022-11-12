@@ -82,7 +82,7 @@ public class BankAccountServiceImpl implements BankAccountService {
 				return bankAccount.get().getBankName()+" succesfully removed";
 			}
 			else
-				throw new BankAccountException("Account  is Not Exist with number "+bankAccount.get().getAccountNumber());
+				throw new BankAccountException("Account  is Not Exist with number "+bankAccount.get());
 			  
 		}
 		

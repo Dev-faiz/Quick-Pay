@@ -7,6 +7,8 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -18,13 +20,14 @@ public class Beneficiary {
 
 
 	@Size(min = 2, max = 10, message = "Name length min=2 and max=10")
-	@NotNull(message = "Name is mandatory")
+//	@NotNull(message = "Name is mandatory")
 	private String beneficiaryName;
 
 	@Id
-	@NotNull(message = "MobileNumber is mandatory")
+//	@NotNull(message = "MobileNumber is mandatory")
 	private String mobileNumber;
-
+	
+//	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL )
 	private Wallet wallet;
 
