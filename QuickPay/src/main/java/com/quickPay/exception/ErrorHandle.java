@@ -28,6 +28,9 @@ public class ErrorHandle {
 		this.description = description;
 	}
 	
+	public ErrorHandle() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	public ErrorHandle(LocalDateTime ldt, String message, String description) {
 		super();

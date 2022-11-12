@@ -28,13 +28,13 @@ public class BankAccount {
 	@Id
 	private Integer accountNumber ;
 	
-	@NotNull
+//	@NotNull
 	private String IFSCCode  ;
 	
-	@NotNull
+//	@NotNull
 	private String bankName ;
 	
-	@NotNull
+//	@NotNull
 	private Double balanace ; 
 	
 	@ManyToOne
