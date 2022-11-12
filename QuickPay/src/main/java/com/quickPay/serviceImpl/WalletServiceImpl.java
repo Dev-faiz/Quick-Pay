@@ -182,17 +182,17 @@ public class WalletServiceImpl implements WalletService {
 		
 		
 		
-		BankAccount b = new BankAccount();
-		b.setBankName("QuickPay Bank");
-		b.setIFSCCode("QUCK456123");
-		b.setAccountNumber(55 );
-		b.setBalanace(amount+10000);
-		c.getWallet().setBankAccount(b);
+//		BankAccount b = new BankAccount();
+//		b.setBankName("QuickPay Bank");
+//		b.setIFSCCode("QUCK456123");
+//		b.setAccountNumber(55 );
+//		b.setBalanace(amount+10000);
+//		c.getWallet().setBankAccount(b);
 //	
 		
 		
 		wDao.save(w);
-		bankDao.save(b);
+//		bankDao.save(b);
 		return cDao.save(c);
 		
 		

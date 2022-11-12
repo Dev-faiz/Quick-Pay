@@ -72,11 +72,18 @@ public class BankAccountServiceImpl implements BankAccountService {
 			
 			Optional<BankAccount> bankAccount = bankAccDao.findById(accountNumber);
 			
-			  Wallet wallet =  bankAccount.get().getWallet();
-			
-			  wallet.setBankAccount(null);
-			
-			  return bankAccount.get().getBankName()+" succesfully removed";
+//			  Wallet wallet =  bankAccount.get().getWallet();
+//			
+//			  wallet.setBankAccount(null);
+			if(bankAccount.isPresent()) {
+				
+				bankAccDao.delete(bankAccount.get());
+				
+				return bankAccount.get().getBankName()+" succesfully removed";
+			}
+			else
+				throw new BankAccountException("Account  is Not Exist with number "+bankAccount.get().getAccountNumber());
+			  
 		}
 		
 		
