@@ -9,10 +9,11 @@ import lombok.Setter;
 @Data
 @Setter
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
-public class LoginDTO {
+@AllArgsConstructor
+public class CustomerDTO {
 
-	private String mobileNo;
-	private String password;
+	private String mobileNo ; 
+	private String password ; 
+	private String name ; 
 }

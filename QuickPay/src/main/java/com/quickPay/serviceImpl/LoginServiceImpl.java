@@ -31,13 +31,12 @@ public class LoginServiceImpl implements LoginService {
 	public String logIn(LoginDTO dto)throws LoginException{
 		
 		
-		Customer existingCustomer= cDao.findByMobileNumber(dto.getMobileNo());
+		Customer existingCustomer = cDao.findByMobileNumber(dto.getMobileNo());
 		
 		if(existingCustomer == null) {
 			
 			throw new LoginException("Please Enter a valid mobile number");
 			
-			 
 		}
 		
 		

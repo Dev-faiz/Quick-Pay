@@ -22,10 +22,13 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
 
 	@Autowired
 	private WalletDao wDao;
+	
+	
 
 	@Override
 	public Beneficiary addBenificiary(Beneficiary bd) throws BeneficiaryException {
 
+		
 		if (bDao.findById(bd.getMobileNumber()).isEmpty()) {
 
 			Wallet wt = bd.getWallet();

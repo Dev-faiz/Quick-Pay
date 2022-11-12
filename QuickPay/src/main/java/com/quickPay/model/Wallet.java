@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Min;
@@ -42,12 +43,14 @@ public class Wallet {
 
 	
 	@OneToOne(cascade = CascadeType.ALL , mappedBy = "wallet")
+	@JsonIgnore
 	private Customer customer ; 
 	
 	
 	
-	@OneToMany(cascade = CascadeType.ALL )
-	private List<BankAccount> bankAccount ; 
+	@OneToOne(cascade = CascadeType.ALL  )
+	@JsonIgnore
+	private BankAccount bankAccount ; 
 	
 	@OneToMany(cascade = CascadeType.ALL , mappedBy = "wallet")
 	@JsonIgnore
@@ -58,7 +61,7 @@ public class Wallet {
 	private List<BillPayment> billPayment = new ArrayList<>() ; 
 	
 	
-	@OneToMany(cascade = CascadeType.ALL , mappedBy = "wallet")
+	@OneToMany(cascade = CascadeType.ALL )
 	@JsonIgnore
 	private List<Beneficiary> beneficiary = new ArrayList<>() ; 
 	
