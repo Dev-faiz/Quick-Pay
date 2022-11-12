@@ -23,6 +23,8 @@ import com.quickPay.model.Wallet;
 
 import com.quickPay.service.WalletService;
 
+import net.bytebuddy.utility.RandomString;
+
 @Service
 public class WalletServiceImpl implements WalletService {
 
@@ -40,6 +42,8 @@ public class WalletServiceImpl implements WalletService {
 	
 	@Autowired
 	private TransactionDao tdao ;
+	
+	
 	
 	
 	@Override
@@ -106,15 +110,16 @@ public class WalletServiceImpl implements WalletService {
 		
 		Optional<Customer> founded =  cDao.findById(cId);
 		
+		
 		if(founded.isEmpty()) throw new CustomerException("Customer no founded with " + customer.getCustomerId());
 			
-		return cDao.save(customer);
+		return cDao.save(founded.get());
 		
 			
 	}
 
 	@Override
-	public Transaction addMoney(Wallet wallet, Integer money , String key ) throws LoginException , BankException {
+	public Transaction addMoney( Integer walletId , Integer money , String key ) throws LoginException , BankException {
 		
 		
 		Integer user = udao.findByUuid(key).getUserId();
@@ -123,11 +128,15 @@ public class WalletServiceImpl implements WalletService {
 		
 		if(customer.isEmpty() ) throw new LoginException("Customer not found with this key ");
 		
-		List<BankAccount> bankAcList =  wallet.getBankAccount();
-		BankAccount bankAc = bankAcList.get(0);
+		Wallet wallet =  wDao.findByWalletId(walletId);
 		
 		
-		if(bankAcList.isEmpty()) throw new BankException("Bank not found Exception");
+		
+		
+		BankAccount bankAc = wallet.getBankAccount() ; 
+		
+		
+		if(bankAc == null ) throw new BankException("Bank not found Exception");
 			
 			
 		if(bankAc.getBalanace() >= money ) {
@@ -158,9 +167,37 @@ public class WalletServiceImpl implements WalletService {
 	}
 
 	@Override
-	public Customer createAccount(String name, String mobileNumber, Integer amount) throws BankException {
-		// TODO Auto-generated method stub
-		return null;
+	public Customer createAccount(String name, String mobileNumber, Double amount) throws BankException {
+		
+		
+		Customer c = new Customer();
+		c.setName(name);
+		c.setMobileNumber(mobileNumber);
+		c.setPassword(RandomString.make(6));
+		
+		Wallet w = new Wallet();
+		c.setWallet(w);
+		
+		w.setBalance(amount);
+		
+		
+		
+		BankAccount b = new BankAccount();
+		b.setBankName("QuickPay Bank");
+		b.setIFSCCode("QUCK456123");
+		b.setAccountNumber(55 );
+		b.setBalanace(amount+10000);
+		c.getWallet().setBankAccount(b);
+//	
+		
+		
+		wDao.save(w);
+		bankDao.save(b);
+		return cDao.save(c);
+		
+		
+		
+		
 	}
 
 	

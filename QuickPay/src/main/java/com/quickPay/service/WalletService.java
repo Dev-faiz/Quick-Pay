@@ -15,9 +15,9 @@ public interface WalletService {
 	
 //	public Wallet save(Wallet w);
 	
-	public Customer createAccount( String name , String mobileNumber , Integer amount ) throws BankException ; 
+	public Customer createAccount( String name , String mobileNumber , Double amount ) throws BankException ; 
 	
-	public Integer showBalance(String key ) throws CustomerException , LoginException ;
+	public Integer showBalance( String key ) throws CustomerException , LoginException ;
 	
 	public Transaction fundTransfer (String sourceMobileNo, String targetMobileNumber , Integer amount ) throws CustomerException ;
 	
@@ -25,7 +25,7 @@ public interface WalletService {
 	
 	public  Customer updateAccount(Customer customer) throws CustomerException  ; 
 	
-	public Transaction addMoney(Wallet wallet , Integer money , String key  ) throws LoginException , BankException  ; 
+	public Transaction addMoney(Integer wallet , Integer money , String key  ) throws LoginException , BankException  ; 
 	
 	
 

@@ -2,6 +2,7 @@ package com.quickPay.model;
 
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -37,8 +38,7 @@ public class BankAccount {
 //	@NotNull
 	private Double balanace ; 
 	
-	@ManyToOne
-	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL , mappedBy = "bankAccount")
 	private Wallet wallet ; 
 	
 }

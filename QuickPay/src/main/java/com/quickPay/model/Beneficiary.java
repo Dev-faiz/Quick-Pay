@@ -25,7 +25,7 @@ public class Beneficiary {
 	@NotNull(message = "MobileNumber is mandatory")
 	private String mobileNumber;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL )
 	private Wallet wallet;
 
 	public Beneficiary() {
