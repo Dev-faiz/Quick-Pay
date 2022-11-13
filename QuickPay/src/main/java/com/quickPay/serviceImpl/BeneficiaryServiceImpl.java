@@ -70,7 +70,7 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
 		if (opt.isPresent()) {
 			return opt.get();
 		} else
-			throw new BeneficiaryException("No Beneficiary with mobilenumber: " + mobno);
+			throw new BeneficiaryException("No Beneficiary with the mobilenumber: " + mobno);
 	}
 
 	@Override
