@@ -83,37 +83,51 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
 	@Override
 	public String deleteBenificiary(String mobile , String key ) throws BeneficiaryException, CustomerException {
 		
-		Integer userId = uDao.findByUuid(key).getUserId();
 		
-		Optional<Customer> customer =  cDao.findById(userId);
-		
-		if(customer.isEmpty()) throw new CustomerException();
-		else {
-			
-			Wallet w = customer.get().getWallet() ;
-			
-			List<Beneficiary> listOfbeneficiary = w.getBeneficiary();
-			 System.out.println(listOfbeneficiary.size());
-			for(int i = 0 ; i < listOfbeneficiary.size() ; i++ ) {
-				
-				if(listOfbeneficiary.get(i).getMobileNumber().equals(mobile)) {
-						
-					 bDao.deleteById(listOfbeneficiary.get(i).getMobileNumber());
-					 bDao.save((listOfbeneficiary.get(i)));
-					
-					 listOfbeneficiary.remove(i);
-					 
-				}
-				
-					
-			}
-			wDao.save(w);
-			return "Successfully beneficiary deleted " ; 
-			
-		}
+		Optional<Beneficiary> opt = bDao.findById(mobile);
+
+		if (opt.isPresent()) {
+
+			Beneficiary existe = opt.get();
+			bDao.delete(existe);
+			return "Beneficiary Deleted";
+		} else
+			throw new BeneficiaryException("Beneficiary does not exist with mobilenumber :" + mobile);
 		
 		
+	
 		
+//		Integer userId = uDao.findByUuid(key).getUserId();
+//		
+//		Optional<Customer> customer =  cDao.findById(userId);
+//		
+//		if(customer.isEmpty()) throw new CustomerException();
+//		else {
+//			
+//			Wallet w = customer.get().getWallet() ;
+//			
+//			List<Beneficiary> listOfbeneficiary = w.getBeneficiary();
+//			 System.out.println(listOfbeneficiary.size());
+//			for(int i = 0 ; i < listOfbeneficiary.size() ; i++ ) {
+//				
+//				if(listOfbeneficiary.get(i).getMobileNumber().equals(mobile)) {
+//						
+//					 bDao.deleteById(listOfbeneficiary.get(i).getMobileNumber());
+//					 bDao.save((listOfbeneficiary.get(i)));
+//					
+//					 listOfbeneficiary.remove(i);
+//					 
+//				}
+//				
+//					
+//			}
+//			wDao.save(w);
+//			return "Successfully beneficiary deleted " ; 
+//			
+//		}
+		
+		
+////		
 
 //		Optional<Beneficiary> opt = bDao.findById(bd.getMobileNumber());
 //
@@ -134,6 +148,20 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
 //			throw new BeneficiaryException("Beneficiary does not exist");
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public Beneficiary viewBenificiary(String mobno) throws BeneficiaryException {
 
@@ -145,14 +173,16 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
 	}
 
 	@Override
-	public List<Beneficiary> viewAllBenificiary(Customer customer) {
-		Integer id = customer.getWallet().getWalletId();
+	public List<Beneficiary> viewAllBenificiary() throws BeneficiaryException {
 
-		Optional<Wallet> opt = wDao.findById(id);
+	
 
-		Wallet wt = opt.get();
+	List<Beneficiary> list = bDao.findAll();
 
-		return wt.getBeneficiary();
-	}
+	if (list.size() == 0)
+		throw new BeneficiaryException  ("No Beneficiary are there");
+	else
+		return list;
 
+}
 }

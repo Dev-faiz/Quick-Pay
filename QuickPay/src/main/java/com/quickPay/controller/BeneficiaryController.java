@@ -38,7 +38,7 @@ public class BeneficiaryController {
 	}
 
 	@DeleteMapping("/beneficiaries")
-	public ResponseEntity<String> deleteBenificiaryHandler( @RequestParam String mobile , String key )
+	public ResponseEntity<String> deleteBenificiaryHandler( @RequestParam String mobile , @RequestParam String key )
 			throws BeneficiaryException, CustomerException {
 
 		String deletebeneficiary = bService.deleteBenificiary(mobile ,key );
@@ -59,10 +59,10 @@ public class BeneficiaryController {
 		return new ResponseEntity<Beneficiary>(beneficiary, HttpStatus.OK);
 	}
 
-	@PostMapping("/viewallbeneficiary")
-	public ResponseEntity<List<Beneficiary>> viewAllBenificiaryHandler(@Valid @RequestBody Customer customer) {
+	@GetMapping("/viewallbeneficiary")
+	public ResponseEntity<List<Beneficiary>> viewAllBenificiaryHandler() throws BeneficiaryException {
 
-		List<Beneficiary> list = bService.viewAllBenificiary(customer);
+		List<Beneficiary> list = bService.viewAllBenificiary();
 
 		return new ResponseEntity<List<Beneficiary>>(list, HttpStatus.OK);
 

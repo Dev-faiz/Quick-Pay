@@ -17,7 +17,7 @@ public interface BeneficiaryService {
 
 	public Beneficiary viewBenificiary(String mobno)throws BeneficiaryException;
 
-	public List<Beneficiary> viewAllBenificiary(Customer customer);
+	public List<Beneficiary> viewAllBenificiary() throws BeneficiaryException;
 
 
 }
