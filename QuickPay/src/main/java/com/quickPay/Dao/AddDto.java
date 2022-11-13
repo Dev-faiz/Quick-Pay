@@ -12,4 +12,6 @@ public class AddDto {
 	private String name ; 
 	private String mobile ;
 	private Double amount ; 
+	
+	
 }

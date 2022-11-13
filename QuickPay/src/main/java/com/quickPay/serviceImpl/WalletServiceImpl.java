@@ -128,12 +128,13 @@ public class WalletServiceImpl implements WalletService {
 		
 		if(customer.isEmpty() ) throw new LoginException("Customer not found with this key ");
 		
-		Wallet wallet =  wDao.findByWalletId(walletId);
+		Optional<Wallet> wallet =  wDao.findByWalletId(walletId);
 		
 		
 		
 		
-		BankAccount bankAc = wallet.getBankAccount() ; 
+		
+		BankAccount bankAc = wallet.get().getBankAccount() ; 
 		
 		
 		if(bankAc == null ) throw new BankException("Bank not found Exception");
@@ -142,17 +143,22 @@ public class WalletServiceImpl implements WalletService {
 		if(bankAc.getBalanace() >= money ) {
 			
 			bankAc.setBalanace(bankAc.getBalanace() - money );
-			wallet.setBalance(wallet.getBalance() + money );
+			wallet.get().setBalance(wallet.get().getBalance() + money );
 			
-			wDao.save(wallet);
-			bankDao.save(bankAc);
+			
 			
 			Transaction transaction = new Transaction();
 					transaction.setTransactionType("Money Transfer");
 					transaction.setLocalDate(LocalDate.now());
 					transaction.setAmount(money);
 					transaction.setDescription("Fund transfered from Bank to wallet");
+
+//					wallet.getTransaction().add(transaction);
+					transaction.setWallet(wallet.get());
 					
+					
+					wDao.save(wallet.get());
+					bankDao.save(bankAc);
 					tdao.save(transaction);
 					return transaction ;
 				
@@ -180,19 +186,19 @@ public class WalletServiceImpl implements WalletService {
 		
 		w.setBalance(amount);
 		
+		Integer acNo = (int)Math.random() + 1 * 100 ;   
 		
-		
-//		BankAccount b = new BankAccount();
-//		b.setBankName("QuickPay Bank");
-//		b.setIFSCCode("QUCK456123");
-//		b.setAccountNumber(55 );
-//		b.setBalanace(amount+10000);
-//		c.getWallet().setBankAccount(b);
-//	
+		BankAccount b = new BankAccount();
+		b.setBankName("QuickPay Bank");
+		b.setIFSCCode("QUCK456123");
+		b.setAccountNumber(200);
+		b.setBalanace(amount+10000);
+		c.getWallet().setBankAccount(b);
+	
 		
 		
 		wDao.save(w);
-//		bankDao.save(b);
+		bankDao.save(b);
 		return cDao.save(c);
 		
 		

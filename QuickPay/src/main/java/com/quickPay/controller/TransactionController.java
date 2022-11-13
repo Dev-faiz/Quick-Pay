@@ -37,7 +37,7 @@ public class TransactionController {
 		return new ResponseEntity<List<Transaction>>(Transactions,HttpStatus.OK);
 	}
 	
-	
+	//LocalDate
 	
 	@GetMapping("/transactions/{walletId}/{date}")
 	ResponseEntity<List<Transaction>> viewTransactionByDateHandler(@PathVariable Integer walletId,
@@ -48,12 +48,16 @@ public class TransactionController {
 		return new ResponseEntity<List<Transaction>>(Transactions,HttpStatus.OK);
 	}
 	
-	@GetMapping("/transactions/{walletId}/{type}")
+	
+	
+	@GetMapping("/transactionsType/{walletId}/{type}")
 	ResponseEntity<List<Transaction>> viewTransactionByType(@PathVariable Integer walletId,
 														@PathVariable String type
 					) throws TransactionException{
 		
 		List<Transaction> Transactions = transService.viewTransactionByDate(walletId, type);
+		
+		
 		return new ResponseEntity<List<Transaction>>(Transactions,HttpStatus.OK);
 	}
 	
