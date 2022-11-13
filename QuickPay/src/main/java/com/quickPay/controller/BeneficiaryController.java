@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quickPay.exception.BeneficiaryException;
+import com.quickPay.exception.CustomerException;
 import com.quickPay.model.Beneficiary;
+import com.quickPay.model.BeneficiaryDto;
 import com.quickPay.model.Customer;
 import com.quickPay.service.BeneficiaryService;
 
@@ -26,21 +29,21 @@ public class BeneficiaryController {
 	private BeneficiaryService bService;
 
 	@PostMapping("/beneficiaries")
-	public ResponseEntity<Beneficiary> addBenificiaryHandler(@Valid @RequestBody Beneficiary bd)
+	public ResponseEntity<Beneficiary> addBenificiaryHandler(@Valid @RequestBody BeneficiaryDto bd , @RequestParam String key )
 			throws BeneficiaryException {
 
-		Beneficiary beneficiary = bService.addBenificiary(bd);
+		Beneficiary beneficiary = bService.addBenificiary(bd,key);
 
 		return new ResponseEntity<Beneficiary>(beneficiary, HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/beneficiaries")
-	public ResponseEntity<Beneficiary> deleteBenificiaryHandler(@Valid @RequestBody Beneficiary bd)
-			throws BeneficiaryException {
+	public ResponseEntity<String> deleteBenificiaryHandler( @RequestParam String mobile , String key )
+			throws BeneficiaryException, CustomerException {
 
-		Beneficiary deletebeneficiary = bService.deleteBenificiary(bd);
+		String deletebeneficiary = bService.deleteBenificiary(mobile ,key );
 
-		return new ResponseEntity<Beneficiary>(deletebeneficiary, HttpStatus.OK);
+		return new ResponseEntity<String>(deletebeneficiary, HttpStatus.OK);
 	}
 
 	@GetMapping("/beneficiaries/{mobilenumber}")

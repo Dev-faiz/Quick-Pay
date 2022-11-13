@@ -2,12 +2,15 @@ package com.quickPay.controller;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quickPay.exception.TransactionException;
@@ -18,6 +21,8 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 public class TransactionController {
+	
+	
 	@Autowired
 	private TransactionService transService;
 	
@@ -37,7 +42,7 @@ public class TransactionController {
 		return new ResponseEntity<List<Transaction>>(Transactions,HttpStatus.OK);
 	}
 	
-	//LocalDate
+
 	
 	@GetMapping("/transactions/{walletId}/{date}")
 	ResponseEntity<List<Transaction>> viewTransactionByDateHandler(@PathVariable Integer walletId,
@@ -50,12 +55,13 @@ public class TransactionController {
 	
 	
 	
-	@GetMapping("/transactionsType/{walletId}/{type}")
-	ResponseEntity<List<Transaction>> viewTransactionByType(@PathVariable Integer walletId,
-														@PathVariable String type
+	@GetMapping("/transactionsType/{walletId}/")
+	ResponseEntity<List<Transaction>> viewTransactionByType(@RequestParam String key,
+														@PathVariable Integer walletId  , 
+														@RequestParam String type
 					) throws TransactionException{
 		
-		List<Transaction> Transactions = transService.viewTransactionByDate(walletId, type);
+		List<Transaction> Transactions = transService.viewAllTransactionsbyType(key, walletId,  type );
 		
 		
 		return new ResponseEntity<List<Transaction>>(Transactions,HttpStatus.OK);

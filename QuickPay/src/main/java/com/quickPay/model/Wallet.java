@@ -47,6 +47,7 @@ public class Wallet {
 	private BankAccount bankAccount ; 
 	
 	@OneToMany(cascade = CascadeType.ALL , mappedBy = "wallet")
+	@JsonIgnore
 	private List<Transaction> transaction = new ArrayList<>() ; 
 	
 	@OneToMany(cascade = CascadeType.ALL , mappedBy = "wallet")

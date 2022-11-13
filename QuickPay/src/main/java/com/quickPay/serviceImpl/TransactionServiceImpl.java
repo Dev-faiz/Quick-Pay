@@ -59,29 +59,42 @@ public class TransactionServiceImpl implements TransactionService{
 	}
 
 	@Override
-	public List<Transaction> viewAllTransactions(String key, Integer walletId) throws TransactionException {
-   User opts = uDao.findByUuid(key);
+	public List<Transaction> viewAllTransactionsbyType( String key, Integer walletId , String type  ) throws TransactionException {
 		
-		if(opts== null )
-		{
-			throw new TransactionException("Unauthorized value");
-		}
-		Optional<Wallet> wallet= wDao.findById(walletId);
-		if(!wallet.isPresent())
-		{
-			throw new TransactionException("Wallet not found");
-		}
-		else
-		{
+		List<Transaction> tl = new ArrayList<>();
+		
+			User opts = uDao.findByUuid(key);
 			
-			List <Transaction>  transations = wallet.get().getTransaction();
 			
-			if(transations.size() >0)
-			{
-				return transations;
+		
+			if(opts== null ){
+				throw new TransactionException("Unauthorized value");
 			}
-			else
-			{
+			
+			
+			
+			Optional<Wallet> wallet= wDao.findById(walletId);
+			
+			
+			
+			if(!wallet.isPresent()){
+				throw new TransactionException("Wallet not found");
+			}else{
+			
+				
+			List <Transaction>  transactions = wallet.get().getTransaction();
+			
+			for(int i = 0 ; i < transactions.size() ; i++ ) {
+				
+				if(transactions.get(i).getTransactionType().equals(type)) {
+					tl.add(transactions.get(i));
+				}
+				
+			}
+			
+			if(tl.size() >0){
+				return tl;
+			}else{
 				throw new TransactionException("No Transaction Foundds");
 			}
 		}
@@ -89,22 +102,27 @@ public class TransactionServiceImpl implements TransactionService{
 
 	@Override
 	public List<Transaction> viewTransactionByDate(Integer walletId, String date) throws TransactionException {
-      DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		
+		
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		
 		LocalDate ld = LocalDate.parse(date, dtf);
 		
+		
 		Optional<Wallet> wallet= wDao.findById(walletId);
+		
+		
 		if(!wallet.isPresent())
 		{
 			throw new TransactionException("No Wallet Regiesterd!!");
 		}
-		List <Transaction>  transations = wallet.get().getTransaction();
-		
+		List <Transaction>  transactions = wallet.get().getTransaction();
+//		transactions.get(0).getLocalDate()
 		List <Transaction>  transationsDWIthDate = new ArrayList();
 		
-		for(Transaction tc : transations )
+		for(Transaction tc : transactions )
 		{
-			if(tc.getTransactionType().equals(ld))
+			if(tc.getLocalDate().equals(ld))
 			{
 				transationsDWIthDate.add(tc);
 			}
@@ -134,4 +152,7 @@ public class TransactionServiceImpl implements TransactionService{
 		}
 	}
 
+
+	
+	
 }

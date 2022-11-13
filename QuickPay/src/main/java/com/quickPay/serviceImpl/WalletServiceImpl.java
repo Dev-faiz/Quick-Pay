@@ -82,11 +82,11 @@ public class WalletServiceImpl implements WalletService {
 	   cDao.save(target);
 	   
 	    Transaction transaction = new Transaction();
-		transaction.setTransactionType("Money Transfer");
+		transaction.setTransactionType("Debit");
 		transaction.setLocalDate(LocalDate.now());
 		transaction.setAmount(amount);
 		transaction.setDescription("Fund transfered from "+ source.getName() + " to wallet " + target.getName());
-		
+		transaction.setWallet(source.getWallet());
 		tdao.save(transaction);
 	   
 		return transaction ; 
@@ -148,7 +148,7 @@ public class WalletServiceImpl implements WalletService {
 			
 			
 			Transaction transaction = new Transaction();
-					transaction.setTransactionType("Money Transfer");
+					transaction.setTransactionType("Credit");
 					transaction.setLocalDate(LocalDate.now());
 					transaction.setAmount(money);
 					transaction.setDescription("Fund transfered from Bank to wallet");
@@ -186,19 +186,7 @@ public class WalletServiceImpl implements WalletService {
 		
 		w.setBalance(amount);
 		
-		Integer acNo = (int)Math.random() + 1 * 100 ;   
-		
-		BankAccount b = new BankAccount();
-		b.setBankName("QuickPay Bank");
-		b.setIFSCCode("QUCK456123");
-		b.setAccountNumber(200);
-		b.setBalanace(amount+10000);
-		c.getWallet().setBankAccount(b);
-	
-		
-		
 		wDao.save(w);
-		bankDao.save(b);
 		return cDao.save(c);
 		
 		

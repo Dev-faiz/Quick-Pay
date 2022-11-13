@@ -9,7 +9,7 @@ public interface TransactionService {
 
 	public Transaction addTansaction(Transaction trans) throws TransactionException;
 	
-	public List<Transaction> viewAllTransactions(String key,Integer walletId) throws TransactionException;
+	public List<Transaction> viewAllTransactionsbyType(String key,Integer walletId , String type) throws TransactionException;
 	
 	public List<Transaction> viewTransactionByDate(Integer walletId, String date)throws TransactionException;
 	

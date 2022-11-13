@@ -44,7 +44,6 @@ public class Transaction {
 	
 	
 	@ManyToOne(cascade = CascadeType.ALL )
-	@JsonIgnore
 	private Wallet wallet ; 
 	
 	

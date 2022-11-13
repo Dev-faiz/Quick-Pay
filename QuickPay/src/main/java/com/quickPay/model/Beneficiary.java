@@ -29,6 +29,7 @@ public class Beneficiary {
 	
 //	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL )
+	@JsonIgnore
 	private Wallet wallet;
 
 	public Beneficiary() {
