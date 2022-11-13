@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quickPay.exception.BankAccountException;
+import com.quickPay.model.BankAccDTO;
 import com.quickPay.model.BankAccount;
 import com.quickPay.service.BankAccountService;
 
@@ -29,9 +30,9 @@ public class BankAccountController {
 
 	
 	@PostMapping("/addBank")
-	ResponseEntity<String> addAccounthandler(@Valid @RequestBody BankAccount bankAccount, @RequestParam String key){
+	ResponseEntity<String> addAccounthandler(@Valid @RequestBody BankAccDTO bankAccount,@RequestParam Integer walletId, @RequestParam String key){
 		
-	return new ResponseEntity<String>(bankService.addAccount(bankAccount, key),HttpStatus.CREATED);
+	return new ResponseEntity<String>(bankService.addAccount(bankAccount,walletId, key),HttpStatus.CREATED);
 	
 	}
 	

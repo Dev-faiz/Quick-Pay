@@ -8,6 +8,7 @@ import com.quickPay.Dao.BankAccountDao;
 import com.quickPay.Dao.UserDao;
 import com.quickPay.Dao.WalletDao;
 import com.quickPay.exception.BankAccountException;
+import com.quickPay.model.BankAccDTO;
 import com.quickPay.model.BankAccount;
 import com.quickPay.model.User;
 import com.quickPay.model.Wallet;
@@ -25,24 +26,45 @@ public class BankAccountServiceImpl implements BankAccountService {
 	@Autowired
 	UserDao userDao;
 	
+	
+	
 	@Override
-	public String addAccount(BankAccount bankAccount, String key) {
+	public String addAccount(BankAccDTO bankAccount,Integer walletId, String key) {
 		
 	 User currentUser =  userDao.findByUuid(key);
+	 
+	 if(currentUser != null) {
+
+		  
+			
+			
+		  Optional<Wallet> wallet = walletdao.findById(walletId);
+		   
+		  if(wallet.isPresent()) {
+			  
+			  BankAccount bank = new BankAccount();
+			  bank.setAccountNumber(bankAccount.getAccountNumber());
+			  bank.setIFSCCode(bankAccount.getIFSCCode());
+			  bank.setBankName(bankAccount.getBankName());
+			  bank.setBalanace(bankAccount.getBalanace());
+			  wallet.get().setBankAccount(bank);
+ 
 		
-		if(currentUser == null) {
-			
-			return "You are not Valid User";
-			
-		}
-		else {
-			
-			BankAccount bank= bankAccDao.save(bankAccount);
-			
-			return "BankAccount Has Been Created";
-			
-			
-		}
+		
+		
+		walletdao.save(wallet.get());
+			  
+			  
+		  }else {
+			  return "wallet not found";
+		  }
+		  
+		  
+		return bankAccount.getBankName()+" is successfully added..";
+  }
+  
+	return "user not found "+walletId;
+	
 	
 	}
 	
@@ -72,9 +94,10 @@ public class BankAccountServiceImpl implements BankAccountService {
 			
 			Optional<BankAccount> bankAccount = bankAccDao.findById(accountNumber);
 			
-//			  Wallet wallet =  bankAccount.get().getWallet();
-//			
-//			  wallet.setBankAccount(null);
+			  Wallet wallet =  bankAccount.get().getWallet();
+			
+			  wallet.setBankAccount(null);
+
 			if(bankAccount.isPresent()) {
 				
 				bankAccDao.delete(bankAccount.get());
@@ -84,12 +107,12 @@ public class BankAccountServiceImpl implements BankAccountService {
 			else
 				throw new BankAccountException("Account  is Not Exist with number "+bankAccount.get());
 			  
+			  
 		}
 		
 		
 		 throw new BankAccountException("Key Invalid");
 	}
-	
 
 	
 
