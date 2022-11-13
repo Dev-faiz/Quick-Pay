@@ -17,3 +17,6 @@ public interface WalletDao extends JpaRepository<Wallet, Integer> {
 	
 	
 }
+
+
+

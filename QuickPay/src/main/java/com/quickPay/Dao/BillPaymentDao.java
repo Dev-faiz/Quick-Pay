@@ -8,3 +8,5 @@ import com.quickPay.model.Wallet;
 public interface BillPaymentDao  extends JpaRepository<BillPayment, Integer>{
 
 }
+
+

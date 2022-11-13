@@ -51,6 +51,8 @@ public class WalletControl {
 
 	}
 	
+	
+	
 	@GetMapping("getListOfCustomer")
 	public ResponseEntity<List<Customer>> getList() throws CustomerException{
 		

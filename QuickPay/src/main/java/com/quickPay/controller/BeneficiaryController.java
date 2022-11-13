@@ -66,5 +66,7 @@ public class BeneficiaryController {
 
 		return new ResponseEntity<List<Beneficiary>>(list, HttpStatus.OK);
 
+		
+		
 	}
 }
