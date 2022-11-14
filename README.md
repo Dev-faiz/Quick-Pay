@@ -1,7 +1,7 @@
 # Quick-Pay 
 
 
-<img align="left" alt="Coding" width="550" src="https://https://github.com/Dev-faiz/assorted-bead-1357/blob/main/QuickPay.png">
+<img align="left" alt="Coding" width="550" src="https://github.com/Dev-faiz/assorted-bead-1357/blob/main/QuickPay.png">
 
 ## Description
 
@@ -37,7 +37,7 @@
 - for representation we used swagger
 
 ### ER Diagram
-<img align="left" alt="Coding" width="550" src="https://github.com/Dev-Mriganka/Deccan-Herald/blob/main/Assets/DH-L.png">
+<img align="left" alt="Coding" width="550" src="https://github.com/Dev-faiz/assorted-bead-1357/blob/main/Screenshot%20(30).png">
 
 
 
