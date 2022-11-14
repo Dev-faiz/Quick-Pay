@@ -26,8 +26,8 @@
 ### Team 
 
 - Faiz Ansari       [@dev-faiz]( https://github.com/dev-faiz)
-- Falgun Bokde     [@pratikderepatil](https://github.com/pratikderepatil)                                                 
-- RaviShek Singh  [@erpushpendrasingh]( https://github.com/erpushpendrasingh)
+- Falgun Bokde                                                    
+- RaviShek Singh  
 - Gokul Kandpal
 
 ### Lessons Learned
