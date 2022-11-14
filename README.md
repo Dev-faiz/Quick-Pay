@@ -1,7 +1,7 @@
 # Quick-Pay 
 
 
-<img align="left" alt="Coding" width="550" src="https://github.com/Dev-faiz/assorted-bead-1357/blob/main/QuickPay.png">
+<img align="right" alt="Coding" width="550" src="https://github.com/Dev-faiz/assorted-bead-1357/blob/main/QuickPay.png">
 
 ## Description
 
