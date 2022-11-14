@@ -11,31 +11,30 @@
 ### Tech Stack
 
 
-![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
-![jQuery](https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white)
+![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
+![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)
+![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white)
 
 
 ### Features 
-- Data appeared at dom with using DOM manipulation.
-- News exploration with reponsive UI.
+- You can SignUp and Login
+- You can perform operation like add bank account , send money , fund transfer etc, 
 - User registration functionality and form validation.
-- categorized news sections as per user requirement.
 
 ### Team 
 
-- Faiz Ansari       [@dev-faiz]( https://github.com/dev-faiz)
-- Falgun Bokde       [@falgunbokde23]( https://github.com/falgunbokde23)                                             
-- RaviShek Singh  
-- Gokul Kandpal
+- Faiz Ansari      [@dev-faiz]( https://github.com/dev-faiz)
+- Falgun Bokde     [@fakgunbokde23](https://github.com/falgunbokde23)                                                 
+- RaviShek Singh   [@RavishekSing](https://github.com/RavishekSingh)
+- Gokul Kandpal    [@Kandpalgokul01](https://github.com/Kandpalgokul01)
 
 ### Lessons Learned
 
 - Gain excessive knowledge on application of SpringBoot , JAVA , SQL and JPA .
 - Got to know how to collabrate with team members.
 - Enjoyed the process of learning and creating the product.
-
+- for representation we used swagger
 
 ### ER Diagram
 <img align="left" alt="Coding" width="550" src="https://github.com/Dev-Mriganka/Deccan-Herald/blob/main/Assets/DH-L.png">
