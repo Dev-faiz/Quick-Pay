@@ -20,7 +20,9 @@ public class LoginController {
 	private LoginService customerLogin;
 	
 	@PostMapping("/login")
-	public ResponseEntity<String> logInCustomer(@RequestBody LoginDTO dto) throws LoginException {
+	public ResponseEntity<String> logInCustomer(@RequestParam String mobile , @RequestParam String password) throws LoginException {
+		
+		LoginDTO dto = new LoginDTO(mobile , password);
 		
 		String result = customerLogin.logIn(dto);
 		

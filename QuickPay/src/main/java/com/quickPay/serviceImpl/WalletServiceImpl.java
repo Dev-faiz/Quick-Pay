@@ -18,6 +18,7 @@ import com.quickPay.exception.CustomerException;
 import com.quickPay.exception.LoginException;
 import com.quickPay.model.BankAccount;
 import com.quickPay.model.Customer;
+import com.quickPay.model.CustomerDTO;
 import com.quickPay.model.Transaction;
 import com.quickPay.model.Wallet;
 
@@ -78,8 +79,7 @@ public class WalletServiceImpl implements WalletService {
 	   source.getWallet().setBalance(source.getWallet().getBalance() - amount);
 	   target.getWallet().setBalance(target.getWallet().getBalance() + amount);
 		
-	   cDao.save(source);
-	   cDao.save(target);
+	  
 	   
 	    Transaction transaction = new Transaction();
 		transaction.setTransactionType("Debit");
@@ -87,6 +87,9 @@ public class WalletServiceImpl implements WalletService {
 		transaction.setAmount(amount);
 		transaction.setDescription("Fund transfered from "+ source.getName() + " to wallet " + target.getName());
 		transaction.setWallet(source.getWallet());
+		
+		cDao.save(source);
+		cDao.save(target);
 		tdao.save(transaction);
 	   
 		return transaction ; 
@@ -104,22 +107,27 @@ public class WalletServiceImpl implements WalletService {
 	}
 
 	@Override
-	public Customer updateAccount(Customer customer) throws CustomerException {
+	public Customer updateAccount(CustomerDTO customer , String key ) throws CustomerException {
 		
-		Integer cId = customer.getCustomerId();
-		
-		Optional<Customer> founded =  cDao.findById(cId);
+		Integer user = udao.findByUuid(key).getUserId();
 		
 		
-		if(founded.isEmpty()) throw new CustomerException("Customer no founded with " + customer.getCustomerId());
+		Optional<Customer> founded =  cDao.findById(user);
+		
+		
+		if(founded.isEmpty()) throw new CustomerException("Customer no founded with " + user);
 			
+		founded.get().setMobileNumber(customer.getMobileNo());
+		founded.get().setName(customer.getName());
+		founded.get().setPassword(customer.getPassword());
+		
 		return cDao.save(founded.get());
 		
 			
 	}
 
 	@Override
-	public Transaction addMoney( Integer walletId , Integer money , String key ) throws LoginException , BankException {
+	public Transaction addMoney( Integer walletId , Integer money , String key ) throws Exception {
 		
 		
 		Integer user = udao.findByUuid(key).getUserId();
@@ -156,11 +164,15 @@ public class WalletServiceImpl implements WalletService {
 //					wallet.getTransaction().add(transaction);
 					transaction.setWallet(wallet.get());
 					
-					
-					wDao.save(wallet.get());
-					bankDao.save(bankAc);
-					tdao.save(transaction);
-					return transaction ;
+					try {
+						wDao.save(wallet.get());
+						bankDao.save(bankAc);
+						tdao.save(transaction);
+						return transaction ;
+					}catch(Exception e) {
+						throw new Exception("SQL");
+					}
+				
 				
 		}else {
 			

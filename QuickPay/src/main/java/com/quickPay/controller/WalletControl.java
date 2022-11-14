@@ -23,6 +23,7 @@ import com.quickPay.exception.CustomerException;
 import com.quickPay.exception.LoginException;
 
 import com.quickPay.model.Customer;
+import com.quickPay.model.CustomerDTO;
 import com.quickPay.model.Transaction;
 
 import com.quickPay.service.WalletService;
@@ -34,7 +35,7 @@ public class WalletControl {
 	private WalletService wService ; 
 	
 	@PostMapping("fundTransfer")
-	public ResponseEntity<Transaction> fundTransferHandle(@RequestParam String source , @RequestParam String target , Integer amount ) throws CustomerException{
+	public ResponseEntity<Transaction> fundTransferHandle(@RequestParam String target , @RequestParam String source , Integer amount ) throws CustomerException{
 		
 		Transaction trans = 	wService.fundTransfer(source, target, amount);
 		
@@ -60,35 +61,41 @@ public class WalletControl {
 	}
 	
 	@PostMapping("wallet")
-	public ResponseEntity<Customer> createAcoountHandler(@RequestBody AddDto d) throws CustomerException , LoginException, BankException{
+	public ResponseEntity<Customer> createAcoountHandler(@RequestParam String mobile , @RequestParam String name) throws Exception{
 		
+		AddDto d = new AddDto();
+		d.setMobile(mobile);
+		d.setName(name);
+		d.setAmount(0.0);
 		Customer c =  wService.createAccount(d.getName(), d.getMobile(), d.getAmount());
 		
 		return new ResponseEntity<Customer>(c , HttpStatus.ACCEPTED);
 	}
 	
-	@GetMapping("wallet/{mobile}")
-	public ResponseEntity<Integer> getBalance(@PathVariable("mobile") String mobile ) throws CustomerException , LoginException{
-		
-		Integer balance = wService.showBalance(mobile);
-		
-		return new ResponseEntity<Integer>( balance , HttpStatus.OK);
-		
-	}
+//	@GetMapping("wallet/{mobile}")
+//	public ResponseEntity<Integer> getBalance(@PathVariable("mobile") String mobile ) throws CustomerException , LoginException{
+//		
+//		Integer balance = wService.showBalance(mobile);
+//		
+//		return new ResponseEntity<Integer>( balance , HttpStatus.OK);
+//		
+//	}
 	
 	@PostMapping("depositmoney/{amount}")
-	public ResponseEntity<Transaction> depositMoneyController(@RequestParam Integer w, @RequestParam(required = false) String key,@PathVariable Integer amount) throws BankAccountException, LoginException, BankException {
+	public ResponseEntity<Transaction> depositMoneyController(@RequestParam Integer walletId, @RequestParam(required = false) String key,@PathVariable Integer amount) throws Exception {
 		
-		Transaction message =  wService.addMoney(w, amount , key);
+		Transaction message =  wService.addMoney(walletId, amount , key);
 		
 		return new ResponseEntity<Transaction>(message,HttpStatus.ACCEPTED);
 
 	}
 	
 	@PutMapping("wallet")
-	public ResponseEntity<Customer> updateCustomer( @RequestBody Customer c  ) throws CustomerException{
+	public ResponseEntity<Customer> updateCustomer( @RequestParam String name , @RequestParam  String mobile ,  @RequestParam String password , String key  ) throws CustomerException{
 		
-		Customer cus = wService.updateAccount(c);
+		CustomerDTO c = new CustomerDTO(mobile,password ,name   );
+		
+		Customer cus = wService.updateAccount(c,key);
 		
 		return new ResponseEntity<Customer>(cus , HttpStatus.ACCEPTED);
 		

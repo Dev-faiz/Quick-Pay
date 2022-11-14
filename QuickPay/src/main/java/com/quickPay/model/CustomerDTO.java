@@ -16,4 +16,5 @@ public class CustomerDTO {
 	private String mobileNo ; 
 	private String password ; 
 	private String name ; 
+	
 }
