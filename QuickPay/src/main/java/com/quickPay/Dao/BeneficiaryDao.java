@@ -10,3 +10,6 @@ public interface BeneficiaryDao extends JpaRepository<Beneficiary, String> {
 
 
 }
+
+
+

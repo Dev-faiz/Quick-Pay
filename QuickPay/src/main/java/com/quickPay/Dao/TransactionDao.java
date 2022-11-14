@@ -12,3 +12,7 @@ import com.quickPay.model.Wallet;
 public interface TransactionDao  extends JpaRepository<Transaction, Integer> {
 	public List<Transaction> findByTransactionType(TransactionType transactionType);
 }
+
+
+
+

@@ -82,4 +82,13 @@ public class GlobalExceptionHandler {
 
 	}
 	
+	@ExceptionHandler(BillPaymentNotFoundException.class)
+	public ResponseEntity<ErrorHandle> BillPaymentNotFoundException(BillPaymentNotFoundException te, WebRequest wr) {
+
+		ErrorHandle eh = new ErrorHandle(LocalDateTime.now(), te.getMessage(), wr.getDescription(false));
+
+		return new ResponseEntity<ErrorHandle>(eh, HttpStatus.BAD_REQUEST);
+
+	}
+	
 }

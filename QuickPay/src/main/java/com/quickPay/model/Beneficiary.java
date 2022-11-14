@@ -27,7 +27,7 @@ public class Beneficiary {
 //	@NotNull(message = "MobileNumber is mandatory")
 	private String mobileNumber;
 	
-//	@JsonIgnore
+
 	@ManyToOne(cascade = CascadeType.ALL )
 	@JsonIgnore
 	private Wallet wallet;
