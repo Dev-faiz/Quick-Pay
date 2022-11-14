@@ -26,7 +26,7 @@
 ### Team 
 
 - Faiz Ansari       [@dev-faiz]( https://github.com/dev-faiz)
-- Falgun Bokde                                                    
+- Falgun Bokde       [@falgunbokde23]( https://github.com/falgunbokde23)                                             
 - RaviShek Singh  
 - Gokul Kandpal
 
