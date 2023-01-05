@@ -28,7 +28,7 @@
 ### Team 
 
 - Faiz Ansari      [@dev-faiz]( https://github.com/dev-faiz)
-- Falgun Bokde     [@fakgunbokde23](https://github.com/falgunbokde23)                                                 
+- Falgun Bokde     [@falgunbokde23](https://github.com/falgunbokde23)                                                 
 - RaviShek Singh   [@RavishekSing](https://github.com/RavishekSingh)
 - Gokul Kandpal    [@Kandpalgokul01](https://github.com/Kandpalgokul01)
 
